@@ -1,0 +1,11 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile_pos/Screens/Products/Model/product_model.dart';
+import 'package:mobile_pos/Screens/Products/Model/product_total_stock_model.dart';
+
+import '../Repo/product_repo.dart';
+
+ProductRepo productRepo = ProductRepo();
+final productListProvider = FutureProvider<ProductListResponse>((ref) async {
+  final response = await productRepo.fetchProducts();
+  return response;
+});

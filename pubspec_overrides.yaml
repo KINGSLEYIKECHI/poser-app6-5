@@ -1,0 +1,2 @@
+dependency_overrides:
+  infinite_scroll_pagination: ^4.1.0
