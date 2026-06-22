@@ -2,13 +2,13 @@ workflows:
   ios-testflight:
     name: iOS TestFlight
 
+    integrations:
+      app_store_connect: codemagic   # <-- must match the EXACT name you gave it above
+
     environment:
       flutter: 3.41.7
-
       xcode: latest
-
       cocoapods: default
-
       vars:
         BUNDLE_ID: com.nexaibyte.nexaipos2.mobilePos
 
