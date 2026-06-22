@@ -30,6 +30,9 @@
 .pub-cache/
 .pub/
 /build/
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/ephemeral/
 
 # Web related
 
