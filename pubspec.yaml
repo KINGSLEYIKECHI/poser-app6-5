@@ -81,7 +81,10 @@ dependencies:
   community_material_icon: ^5.9.55
   faker: ^2.2.0
   image:
-  bluetooth_print_plus: ^2.4.6
+  #bluetooth_print_plus: ^2.4.6
+  bluetooth_print_plus:
+    git:
+      url: https://github.com/KINGSLEYIKECHI/bluetooth_print_plus.git
   flutter_slidable: ^4.0.0
   icons_plus: ^5.0.0
 #  pdf_render: ^1.4.12
