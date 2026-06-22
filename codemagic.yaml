@@ -3,7 +3,7 @@ workflows:
     name: iOS TestFlight
 
     integrations:
-      app_store_connect: codemagic   # <-- must match the EXACT name you gave it above
+      app_store_connect: codemagic
 
     environment:
       flutter: 3.41.7
@@ -12,27 +12,18 @@ workflows:
       vars:
         BUNDLE_ID: com.nexaibyte.nexaipos2.mobilePos
 
-    cache:
-      cache_paths:
-        - ~/.pub-cache
-        - $HOME/Library/Caches/CocoaPods
-        - ios/Pods
-
     scripts:
       - name: Get Flutter packages
-        script: |
-          flutter pub get
+        script: flutter pub get
 
-      - name: Install CocoaPods
+      - name: Install pods
         script: |
           cd ios
-          pod repo update
           pod install
           cd ..
 
       - name: Build IPA
-        script: |
-          flutter build ipa --release
+        script: flutter build ipa --release
 
     artifacts:
       - build/ios/ipa/*.ipa
@@ -40,7 +31,4 @@ workflows:
     publishing:
       app_store_connect:
         auth: integration
-
-      email:
-        recipients:
-          - nexaibyte@gmail.com
+        submit_to_testflight: true
