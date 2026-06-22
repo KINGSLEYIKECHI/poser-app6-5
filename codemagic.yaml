@@ -1,0 +1,46 @@
+workflows:
+  ios-testflight:
+    name: iOS TestFlight
+
+    environment:
+      flutter: 3.41.7
+
+      xcode: latest
+
+      cocoapods: default
+
+      vars:
+        BUNDLE_ID: com.nexaibyte.nexaipos2.mobilePos
+
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+        - $HOME/Library/Caches/CocoaPods
+        - ios/Pods
+
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          flutter pub get
+
+      - name: Install CocoaPods
+        script: |
+          cd ios
+          pod repo update
+          pod install
+          cd ..
+
+      - name: Build IPA
+        script: |
+          flutter build ipa --release
+
+    artifacts:
+      - build/ios/ipa/*.ipa
+
+    publishing:
+      app_store_connect:
+        auth: integration
+
+      email:
+        recipients:
+          - nexaibyte@gmail.com
